@@ -6,7 +6,6 @@ int main(void) {
     void *ptr3 = realloc(ptr2, 43);
     void *ptr4 = realloc(ptr2, 434334344);
     if (ptr4 == NULL) return 1;
-    free(ptr2);
     free(ptr3);
     free(ptr4);
     free(ptr);

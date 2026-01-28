@@ -84,7 +84,7 @@ void print_memory_status() {
 	print_log("Status:\n");
 	memory_block* temp = head;
 	while (temp != NULL) {
-		snprintf(buffer, BUF_SIZE, " -> %p of size %zu\n", temp->pointer, temp->size);
+		snprintf(buffer, BUF_SIZE, "[STATUS] -> %p of size %zu\n", temp->pointer, temp->size);
 		print_log(buffer);
 		temp = temp->next;
 	}
@@ -94,13 +94,13 @@ __attribute__((destructor)) void exit_log() {
 	char buffer[BUF_SIZE];
 	print_log("<<<<<<< Heap Summary >>>>>>>\n");
 	int blocks_leaked = allocs - frees;
-	snprintf(buffer, BUF_SIZE, "Total bytes of memory leaked: %u bytes\n", total);
+	snprintf(buffer, BUF_SIZE, "[SUMMARY] Total bytes of memory leaked: %u bytes\n", total);
 	print_log(buffer);
-	snprintf(buffer, BUF_SIZE, "   => Total allocs: %u\n", allocs);
+	snprintf(buffer, BUF_SIZE, "[SUMMARY]    => Total allocs: %u\n", allocs);
 	print_log(buffer);
-	snprintf(buffer, BUF_SIZE, "   => Total frees: %u\n", frees);
+	snprintf(buffer, BUF_SIZE, "[SUMMARY]    => Total frees: %u\n", frees);
 	print_log(buffer);
-	snprintf(buffer, BUF_SIZE, "   => Total blocks of memory leaked: %d\n", blocks_leaked);
+	snprintf(buffer, BUF_SIZE, "[SUMMARY]    => Total blocks of memory leaked: %d\n", blocks_leaked);
 	print_log(buffer);
 	if (blocks_leaked > 0) print_memory_status();
 }
